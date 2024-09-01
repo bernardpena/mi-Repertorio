@@ -18,13 +18,15 @@ app.get("/canciones", (req, res)=>{
 });
 
 // /* Crear */
-app.post("/canciones", (req, res)=>{
-    const cancion = req.body
-    const newCancion = JSON.parse(fs.readFileSync("repertorio.json", "utf8"));
-    newCancion.push(cancion);
-    fs.writeFileSync("repertorio.json", JSON.stringify(newCancion, null, 2), "utf8")
-    res.status(201).send("Canción agregada correctamente.");
-})
+app.post("/canciones", (req, res) => {
+    const cancion = req.body; 
+    const repertorio = JSON.parse(fs.readFileSync("repertorio.json", "utf8")); 
+    repertorio.push(cancion); 
+    fs.writeFileSync("repertorio.json", JSON.stringify(repertorio, null, 2), "utf8");
+    
+    res.status(201).send("Canción agregada correctamente."); 
+});
+
 
 /* ruta raiz al index.html */
 app.get("/", (req, res)=>{
